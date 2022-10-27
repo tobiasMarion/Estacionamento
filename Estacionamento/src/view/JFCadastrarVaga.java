@@ -166,7 +166,7 @@ public class JFCadastrarVaga extends javax.swing.JFrame {
         VagaDAO dao = new VagaDAO();
 
         v.setNumero(Integer.parseInt(jTFNumero.getText()));
-        v.setRua(jTFNumero.getText());
+        v.setRua(jTFRua.getText());
         
         if (jRBObliqua.isSelected()) {
             v.setObliqua(true);

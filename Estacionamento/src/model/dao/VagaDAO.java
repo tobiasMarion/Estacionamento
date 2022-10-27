@@ -7,6 +7,10 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import javax.swing.JOptionPane;
 
+import java.sql.ResultSet;
+import java.util.List;
+import java.util.ArrayList;
+
 public class VagaDAO {
 
     public void create(Vaga v) {
@@ -28,5 +32,32 @@ public class VagaDAO {
         } finally {
             ConnectionFactory.closeConnection(con, stmt);
         }
+    }
+
+    public List<Vaga> read() {
+        Connection con = ConnectionFactory.getConnection();
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
+        List<Vaga> vagas = new ArrayList<>();
+
+        try {
+            stmt = con.prepareStatement("SELECT * FROM vaga;");
+            rs = stmt.executeQuery();
+
+            while (rs.next()) {
+                Vaga v = new Vaga();
+                v.setIdVaga(rs.getInt("idVaga"));
+                v.setNumero(rs.getInt("numero"));
+                v.setRua(rs.getString("rua"));
+                v.setObliqua(rs.getBoolean("obliqua"));
+                vagas.add(v);
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException("Erro ao buscar os dados: ", e);
+        } finally {
+            ConnectionFactory.closeConnection(con, stmt, rs);
+        }
+
+        return vagas;
     }
 }
