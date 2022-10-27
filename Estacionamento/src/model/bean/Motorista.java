@@ -2,7 +2,7 @@ package model.bean;
 
 public class Motorista {
 
-    private int idVaga;
+    private int idMotorista;
     private String nome;
     private boolean homem;
     private String rg;
@@ -11,12 +11,12 @@ public class Motorista {
     private String email;
     private String senha;
 
-    public int getIdVaga() {
-        return idVaga;
+    public int getIdMotorista() {
+        return idMotorista;
     }
 
-    public void setIdVaga(int idVaga) {
-        this.idVaga = idVaga;
+    public void setIdMotorista(int idMotorista) {
+        this.idMotorista = idMotorista;
     }
 
     public String getNome() {
