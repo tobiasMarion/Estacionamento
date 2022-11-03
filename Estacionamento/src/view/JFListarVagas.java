@@ -5,10 +5,10 @@
  */
 package view;
 
+import javax.swing.JOptionPane;
 import model.bean.Vaga;
 import model.dao.VagaDAO;
 import javax.swing.table.DefaultTableModel;
-
 
 /**
  *
@@ -80,6 +80,11 @@ public class JFListarVagas extends javax.swing.JFrame {
         jBtnEditar.setText("Editar Vaga");
 
         jBtnExcluir.setText("Excluir Vaga");
+        jBtnExcluir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBtnExcluirActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -128,13 +133,40 @@ public class JFListarVagas extends javax.swing.JFrame {
         readJTable();
     }//GEN-LAST:event_formWindowOpened
 
+    private void jBtnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnExcluirActionPerformed
+        // TODO add your handling code here:
+        if (jTVaga.getSelectedRow() != -1) {
+            int opcao = JOptionPane.showConfirmDialog(
+                    null,
+                    "Deseja excluir a vaga selecionada?",
+                    "Exclusão",
+                    JOptionPane.YES_NO_OPTION
+            );
+
+            if (opcao == 0) {
+                VagaDAO dao = new VagaDAO();
+                Vaga v = new Vaga();
+
+                v.setIdVaga((int) jTVaga.getValueAt(jTVaga.getSelectedRow(), 0));
+                dao.delete(v);
+            }
+        } else {
+            JOptionPane.showMessageDialog(
+                    null,
+                    "Selecione uma vaga!",
+                    "Erro",
+                    JOptionPane.ERROR_MESSAGE);
+        }
+        readJTable();
+    }//GEN-LAST:event_jBtnExcluirActionPerformed
+
     public void readJTable() {
         DefaultTableModel modelo = (DefaultTableModel) jTVaga.getModel();
         modelo.setNumRows(0);
         VagaDAO dao = new VagaDAO();
 
         for (Vaga v : dao.read()) {
-            modelo.addRow(new Object[] {
+            modelo.addRow(new Object[]{
                 v.getIdVaga(),
                 v.getNumero(),
                 v.getRua(),
