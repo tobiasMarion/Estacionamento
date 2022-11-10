@@ -31,7 +31,7 @@ public class Vaga {
         this.rua = rua;
     }
 
-    public boolean getObliqua() {
+    public boolean isObliqua() {
         return obliqua;
     }
 

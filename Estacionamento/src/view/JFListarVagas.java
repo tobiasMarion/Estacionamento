@@ -170,7 +170,7 @@ public class JFListarVagas extends javax.swing.JFrame {
                 v.getIdVaga(),
                 v.getNumero(),
                 v.getRua(),
-                v.getObliqua()
+                v.isObliqua()
             });
         }
 
