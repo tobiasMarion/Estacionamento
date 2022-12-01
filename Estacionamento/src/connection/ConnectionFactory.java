@@ -9,7 +9,7 @@ import java.sql.ResultSet;
 public class ConnectionFactory {
 
     private static final String DRIVER = "com.mysql.jdbc.Driver";
-    private static final String URL = "jdbc:mysql://localhost:3306/estacionamento";
+    private static final String URL = "jdbc:mysql://localhost:3307/estacionamento";
     private static final String USER = "root";
     private static final String PASS = "";
 
@@ -18,7 +18,7 @@ public class ConnectionFactory {
             Class.forName(DRIVER);
             return DriverManager.getConnection(URL, USER, PASS);
         } catch (ClassNotFoundException | SQLException e) {
-            throw new RuntimeException("Erro na conexao: ", e);
+            throw new RuntimeException("Erro na conexão: ", e);
         }
 
     }

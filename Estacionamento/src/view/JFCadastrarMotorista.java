@@ -51,7 +51,8 @@ public class JFCadastrarMotorista extends javax.swing.JFrame {
         jBtnSalvar = new javax.swing.JButton();
         jBtnLimpar = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Cadastrar Motorista");
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         jLabel1.setText("Cadastrar Motorista");
@@ -69,7 +70,6 @@ public class JFCadastrarMotorista extends javax.swing.JFrame {
         BGGenero.add(jRBMasc);
         jRBMasc.setSelected(true);
         jRBMasc.setText("Masculino");
-        jRBMasc.setActionCommand("Masculino");
         jRBMasc.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jRBMascActionPerformed(evt);
@@ -125,6 +125,11 @@ public class JFCadastrarMotorista extends javax.swing.JFrame {
         });
 
         jBtnCancelar.setText("Cancelar");
+        jBtnCancelar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBtnCancelarActionPerformed(evt);
+            }
+        });
 
         jBtnSalvar.setText("Salvar");
         jBtnSalvar.addActionListener(new java.awt.event.ActionListener() {
@@ -288,8 +293,20 @@ public class JFCadastrarMotorista extends javax.swing.JFrame {
 
     private void jBtnLimparActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnLimparActionPerformed
         // TODO add your handling code here:
+        jTFNome.setText("");
+        jTFRg.setText("");
+        jTFCpf.setText("");
+        jTFCelular.setText("");
+        jTFEmail.setText("");
+        jTFSenha.setText("");
+        BGGenero.clearSelection();
 
     }//GEN-LAST:event_jBtnLimparActionPerformed
+
+    private void jBtnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnCancelarActionPerformed
+        // TODO add your handling code here:
+        dispose();
+    }//GEN-LAST:event_jBtnCancelarActionPerformed
 
     /**
      * @param args the command line arguments

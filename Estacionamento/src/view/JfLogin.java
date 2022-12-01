@@ -35,6 +35,7 @@ public class JfLogin extends javax.swing.JFrame {
         jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Login");
 
         jLabel1.setFont(new java.awt.Font("Calibri", 1, 18)); // NOI18N
         jLabel1.setText("Tela de Login");
@@ -102,8 +103,6 @@ public class JfLogin extends javax.swing.JFrame {
                 .addComponent(jButton1)
                 .addContainerGap(17, Short.MAX_VALUE))
         );
-
-        jLabel1.getAccessibleContext().setAccessibleName("Tela de Login");
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
