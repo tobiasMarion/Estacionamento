@@ -86,4 +86,56 @@ public class MotoristaDAO {
 
         }
     }
+
+    public Motorista read(int idMotorista) {
+        Connection con = ConnectionFactory.getConnection();
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
+        Motorista m = new Motorista();
+
+        try {
+            stmt = con.prepareStatement("SELECT * FROM motorista WHERE idMotorista=? LIMIT 1;");
+            stmt.setInt(1, idMotorista);
+            rs = stmt.executeQuery();
+            if (rs != null && rs.next()) {
+                m.setIdMotorista(rs.getInt("idMotorista"));
+                m.setNome(rs.getString("nome"));
+                m.setHomem(rs.getBoolean("homem"));
+                m.setRg(rs.getString("rg"));
+                m.setCpf(rs.getString("cpf"));
+                m.setCelular(rs.getString("celular"));
+                m.setEmail(rs.getString("email"));
+                m.setSenha(rs.getString("senha"));
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException("Erro ao buscar os dados: ", e);
+        } finally {
+            ConnectionFactory.closeConnection(con, stmt, rs);
+        }
+
+        return m;
+    }
+
+    public void update(Motorista m) {
+        Connection con = ConnectionFactory.getConnection();
+        PreparedStatement stmt = null;
+        try {
+            stmt = con.prepareCall("UPDATE motorista SET nome=?, homem=?, rg=?, cpf=?, celular=?, email=?, senha=? WHERE idMotorista=?");
+            stmt.setString(1, m.getNome());
+            stmt.setBoolean(2, m.isHomem());
+            stmt.setString(3, m.getRg());
+            stmt.setString(4, m.getCpf());
+            stmt.setString(5, m.getCelular());
+            stmt.setString(6, m.getEmail());
+            stmt.setString(7, m.getSenha());
+            stmt.setInt(8, m.getIdMotorista());
+            stmt.executeUpdate();
+            JOptionPane.showMessageDialog(null, "Motorista Atualizado com sucesso!");
+
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "Erro ao atualizar: " + e);
+        } finally {
+            ConnectionFactory.closeConnection(con, stmt);
+        }
+    }
 }
