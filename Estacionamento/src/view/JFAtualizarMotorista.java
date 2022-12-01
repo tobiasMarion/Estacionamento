@@ -13,7 +13,7 @@ import model.bean.Motorista;
  */
 public class JFAtualizarMotorista extends javax.swing.JFrame {
 
-    private static int idVaga;
+    private static int idMotorista;
 
     /**
      * Creates new form JFAtualizarMotorista
@@ -336,7 +336,7 @@ public class JFAtualizarMotorista extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                JFAtualizarMotorista frame = new JFAtualizarMotorista(idVaga);
+                JFAtualizarMotorista frame = new JFAtualizarMotorista(idMotorista);
                 frame.setVisible(true);
             }
         });
